@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Calculator</title>
+    <style>
+        /* Style de base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Conteneur principal */
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 500px; /* largeur fixe pour les grands écrans */
+            box-sizing: border-box;
+        }
+        
+        /* Style du titre */
+        .container h1 {
+            margin-bottom: 20px;
+            color: #1f4356;
+            font-size: 2em;
+        }
+        
+        /* Style de l'input de date */
+        .date-input {
+            margin-bottom: 20px;
+        }
+        
+        .date-input label {
+            font-size: 1.1em;
+            color: #333;
+            margin-right: 10px;
+        }
+        
+        .date-input input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        
+        /* Style du résultat */
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #1f4356;
+        }
+        
+        /* Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+            
+            .container h1 {
+                font-size: 1.5em;
+            }
+            
+            .date-input input {
+                font-size: 0.9em;
+            }
+            
+            .result {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Days Calculator</h1>
+        <div class="date-input">
+            <label for="dateInput">Select a date:</label>
+            <input type="date" id="dateInput">
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('dateInput').addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const startOfYear = new Date(selectedDate.getFullYear(), 0, 1); // January 1st of the selected year
+
+            // Calculate the difference in milliseconds
+            const diffTime = selectedDate - startOfYear;
+            // Convert milliseconds to days
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            document.getElementById('result').innerText = `There are ${diffDays} day(s) between January 1st and the selected date.`;
+        });
+    </script>
+</body>
+</html>
